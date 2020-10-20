@@ -7,7 +7,7 @@
   "main": "index.html",
   "moduleType": [],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "index.html",
   "ignore": [
     "**/.*",
     "node_modules",
