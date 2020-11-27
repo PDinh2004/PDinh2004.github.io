@@ -22,24 +22,38 @@ var init = function (window) {
         ///////////////// PROGRAM SETUP ////////////////////////////
         ////////////////////////////////////////////////////////////
         
-        
+        var circle;
+        var circles = [];
 
+        function drawCircle(){
+            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+            physikz.addRandomVelocity(circle, canvas, 10, 10);
+            view.addChild(circle);
+            circles.push(circle);
+        }
+        
+        for (var i = 0; i <= 100; i++) {
+            drawCircle([i]);
+        }
 
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
         ////////////////////////////////////////////////////////////
         
-        /* 
+         /* 
         This Function is called 60 times/second producing 60 frames/second.
         In each frame, for every circle, it should redraw that circle
         and check to see if it has drifted off the screen.         
         */
         function update() {
-            
-           
-            
+        for (var i = 0; i < circles.length; i++) {
+            var eachCircle = circles[i];
+            physikz.updatePosition(eachCircle);
+            game.checkCirclePosition(eachCircle)
+        }    
+
         }
-    
+        
         /* 
         This Function should check the position of a circle that is passed to the 
         Function. If that circle drifts off the screen, this Function should move
@@ -48,12 +62,30 @@ var init = function (window) {
         game.checkCirclePosition = function(circle) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
+
+            var rightEdge = circle.x + circle.radius;
+            var leftEdge = circle.y + circle.radius;
+
             if ( circle.x > canvas.width ) {
                 circle.x = 0;
             }
-            
+            if (circle.x < 0) {
+                circle.x = canvas.width;
+            }
+            if (circle.y > canvas.height) {
+                circle.y = 0;
+            }
+            if (circle.y < 0) {
+                circle.y = canvas.height;
+            }
+            if (circle.radius < rightEdge) {
+                circle.radius = leftEdge;
+            }
+            if (circle.radius < leftEdge) {
+                circle.radius = rightEdge;
+            }
         }
-        
+
         /////////////////////////////////////////////////////////////
         // --- NO CODE BELOW HERE  --- DO NOT REMOVE THIS CODE --- //
         /////////////////////////////////////////////////////////////
