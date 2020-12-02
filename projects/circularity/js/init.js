@@ -61,7 +61,7 @@ var init = function (window) {
         */
         game.checkCirclePosition = function(circle) {
 
-            // if the circle has gone past the RIGHT side of the screen then place it on the LEFT. something
+            // if the circle has gone past the RIGHT side of the screen then place it on the LEFT. something something again
 
             var rightEdge = circle.x + circle.radius;
             var leftEdge = circle.y + circle.radius;
