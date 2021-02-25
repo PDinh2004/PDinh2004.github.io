@@ -1,0 +1,28 @@
+User Story / Gameplay
+    Describe the gameplay
+        There will be two paddles that reflect the pong back and forth.
+    What are the conditions when the game begins?
+        The pong will be randomized to go either left or right when the game begins.
+    Does the game have an end? If so, what are the conditions for when it ends?
+        The game will end after one player earns 5 points.
+    What ifs will there be?
+        If the random number generator produces 0 or 1, it will move left or right, respectively.
+
+Visual Game Components:
+    What are the visual game components? For example, in Bouncing Box, the game components were the board and the box.
+        There will be 2 paddles and one ball/pong.
+    Which will be static? (the board)
+        The board will not be moving.
+    Which will be animated? (the box)
+        The pong and the paddles will move.
+        The paddles will move in the Y-direction only.
+    What data will you need to manage each game component? For example, in Bouncing Box, the data values were positionX, speedX, and points.
+        I will need a position and speed variable for each paddle and the pong. Also, a function to register keys so the paddles will move and stop moving.
+
+Events / Logic
+    What events will occur in this game? (timer events, keyboard events, clicking events?)
+        Some events that will occur are the paddles move up and down with accordance to the keys pressed.
+    How do those events affect the data of the program?
+        These events affect the position of the paddles.
+    For each "event", write out the high-level logic of what will happen. It is better (and tricky) to be as specific as you can while remaining high-level!
+        There will be 2 variables that will assign the directions to each key for each paddle. Then, there will be a function to tell when a key has been pressed and unpressed, both would cause the paddles to move and stop moving respectively.

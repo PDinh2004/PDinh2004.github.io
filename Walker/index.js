@@ -57,6 +57,7 @@ function runProgram(){
     repositionGameItem();
     redrawGameItem();
     borderBoard();
+    // tagGame();
   }
 
   /* 
@@ -132,29 +133,29 @@ function runProgram(){
       }
   }
 
-//   function tagGame(){
-//         if ($("#gameItem").css("background-color", "red")){
-//             if (positionX === positionX2){
-//                 $(".gameItem2").css("background-color", "red");
-//                 $("#gameItem").css("background-color", "teal");
-//             }
-//         }
-//         if ($(".gameItem2").css("background-color", "red")){
-//              if (positionX2 === positionX){
-//                 $("#gameItem").css("background-color", "red");
-//                 $(".gameItem2").css("background-color", "violet");
-//             }
-//         }
-//     }
+    /* function tagGame(){
+        if ($("#gameItem").css("background-color", "red")){
+            if (redrawGameItem() === redrawGameItem()){
+                $(".gameItem2").css("background-color", "red");
+                $("#gameItem").css("background-color", "teal");
+            }
+        }
+        if ($(".gameItem2").css("background-color", "red")){
+             if (redrawGameItem() === redrawGameItem()){
+                $("#gameItem").css("background-color", "red");
+                $(".gameItem2").css("background-color", "violet");
+            }
+        }
+    }
 
-    // function tagGameStart(){
-    //   var numberGen = Math.floor((Math.random() * 2));
-    //   if (numberGen === 1){
-    //       $("#gameItem").css("background-color", "red");
-    //   } else if (numberGen === 0){
-    //       $(".gameItem2").css("background-color", "red");
-    //   }
-    // }
+    function tagGameStart(){
+      var numberGen = Math.floor((Math.random() * 2));
+      if (numberGen === 1){
+          $("#gameItem").css("background-color", "red");
+      } else if (numberGen === 0){
+          $(".gameItem2").css("background-color", "red");
+      }
+    } */
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
@@ -198,9 +199,8 @@ function runProgram(){
       }
   }
 
-  // Calls in the function
+//   Calls in the function
 //   tagGameStart();
-//   tagGame();
 
   function endGame() {
     // stop the interval timer
