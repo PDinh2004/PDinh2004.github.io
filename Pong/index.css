@@ -1,3 +1,13 @@
+h2 {
+    color: white;
+    font-family: arial;
+    position: absolute;
+    left: 145px;
+}
+
+img {
+    text-align: center;
+}
 
 body {
   background-color: darkgreen;
@@ -31,7 +41,7 @@ body {
 
   /* Position */
   position: absolute;
-  left: 390px;
+  left: 397px;
   top: 180px;
 }
 
@@ -48,6 +58,34 @@ body {
   border-radius: 10px;
 }
 
-#score {
-    background-color: white;
+#scoreOne {
+    /* Appearance */
+    color: white;
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    font-family: arial;
+    text-align: center;
+    
+    /* Position */
+    position: absolute;
+    left: 150px;
+    top: 500px;
+}
+
+#scoreTwo {
+    /* Appearance */
+    color: white;
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    font-family: arial;
+    text-align: center;
+
+    /* Position */
+    position: absolute;
+    left: 250px;
+    top: 500px;
 }

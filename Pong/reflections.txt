@@ -7,6 +7,7 @@ User Story / Gameplay
         The game will end after one player earns 5 points.
     What ifs will there be?
         If the random number generator produces 0 or 1, it will move left or right, respectively.
+        If the either of the scores reach 5 first, that player will win the game.
 
 Visual Game Components:
     What are the visual game components? For example, in Bouncing Box, the game components were the board and the box.
