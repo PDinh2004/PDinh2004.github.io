@@ -18,18 +18,23 @@ $(document).ready(function(){
 
 // TODO: Create the applyFilter function here
 function applyFilter(){
-    for (var r = 0; r < image.lenth; r++){
+    for (var r = 0; r < image.length; r++){
         for (var c = 0; c < image[r].length; c++){
-            console.log(image[r][c]);
+
+            var rgbString = rgbStringToArray(image[r][c]);
+            rgbString[0] = 255;
+            rgbString = rgbArrayToString(rgbString);
+            image[r][c] = rgbString;
+            console.log(rgbString);
+
         }
     }
 }
 
-var rgbString = rgbStringToArray(image[0][0]);
-console.log(rgbString);
-
 // TODO: Create the applyFilterNoBackground function
-
+function reddify(array){
+    array[0] = 255;
+}
 
 // TODO: Create filter functions
 
