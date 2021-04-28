@@ -65,6 +65,7 @@ function runProgram(){
         pong.speedX = -pong.speedX;
     }
 
+    // Determines who reached 3 points and it ends the game
     if (points1 >= 3) {
         $("h2").text("GAME OVER, PLAYER 1 WINS!");
         pong.speedX = 0;
@@ -172,6 +173,8 @@ function repositionGameItem(){
 function redrawGameItem(){
     $("#paddle1").css("top", pad1.y); // Redraws box up or down
     $("#paddle2").css("top", pad2.y); // Redraws box2 up or down
+    
+    // Redraws Pong in the X and Y directions
     $("#pong").css("top", pong.y);
     $("#pong").css("left", pong.x);
   }
