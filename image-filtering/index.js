@@ -4,10 +4,9 @@ $(document).ready(function(){
     const $display = $('#display');
 
     // TODO: Call your apply function(s) here
-    applyFilter();
-
-
-
+    applyFilterNoBackground(reddify);
+    applyFilterNoBackground(decreaseBlue);
+    applyFilterNoBackground(increaseGreenByBlue);
 
     render($display, image);
 });
@@ -17,26 +16,49 @@ $(document).ready(function(){
 /////////////////////////////////////////////////////////
 
 // TODO: Create the applyFilter function here
-function applyFilter(){
+function applyFilter(filterFunction){
     for (var r = 0; r < image.length; r++){
         for (var c = 0; c < image[r].length; c++){
 
-            var rgbString = rgbStringToArray(image[r][c]);
-            rgbString[0] = 255;
-            rgbString = rgbArrayToString(rgbString);
+            var rgbString = image[r][c];
+            var rgbNumbers = rgbStringToArray(rgbString);
+            filterFunction(rgbNumbers);
+            rgbString = rgbArrayToString(rgbNumbers);
             image[r][c] = rgbString;
-            console.log(rgbString);
-
         }
     }
 }
 
 // TODO: Create the applyFilterNoBackground function
-function reddify(array){
-    array[0] = 255;
+function applyFilterNoBackground(filterFunction){
+    for (var r = 0; r < image.length; r++){
+        for (var c = 0; c < image[r].length; c++){
+
+            var rgbString = image[r][c];
+            var rgbNumbers = rgbStringToArray(rgbString);
+
+            if (image[r][c] === "rgb(150, 150, 150)"){
+                image[r][c] = "rgb(150, 150, 150)";
+            } else {
+                filterFunction(rgbNumbers);
+                rgbString = rgbArrayToString(rgbNumbers);
+                image[r][c] = rgbString;
+            }
+        }
+    }
 }
 
 // TODO: Create filter functions
+function reddify(array){
+    array[RED] = 255;
+}
 
+function decreaseBlue(array){
+    array[BLUE] = Math.max(array[BLUE] - 30, 0);
+}
+
+function increaseGreenByBlue(array){
+    array[GREEN] = Math.min(array[GREEN] + array[BLUE], 255);
+}
 
 // CHALLENGE code goes below here
