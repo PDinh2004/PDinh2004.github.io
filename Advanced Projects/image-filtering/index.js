@@ -6,7 +6,8 @@ $(document).ready(function(){
     // TODO: Call your apply function(s) here
     applyFilterNoBackground(reddify);
     applyFilterNoBackground(decreaseBlue);
-    applyFilterNoBackground(increaseGreenByBlue);
+    applyFilter(increaseGreenByBlue);
+    applyFilterNoBackground(blueFy);
 
     render($display, image);
 });
@@ -37,8 +38,8 @@ function applyFilterNoBackground(filterFunction){
             var rgbString = image[r][c];
             var rgbNumbers = rgbStringToArray(rgbString);
 
-            if (image[r][c] === "rgb(150, 150, 150)"){
-                image[r][c] = "rgb(150, 150, 150)";
+            if (image[r][c] === image[0][0]){
+                image[r][c] = image[0][0];
             } else {
                 filterFunction(rgbNumbers);
                 rgbString = rgbArrayToString(rgbNumbers);
@@ -59,6 +60,10 @@ function decreaseBlue(array){
 
 function increaseGreenByBlue(array){
     array[GREEN] = Math.min(array[GREEN] + array[BLUE], 255);
+}
+
+function blueFy(array){
+    array[BLUE] = 255;
 }
 
 // CHALLENGE code goes below here
