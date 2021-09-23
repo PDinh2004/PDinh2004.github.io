@@ -21,7 +21,9 @@ var _ = {};
 *   _.identity({a: "b"}) === {a: "b"}
 */
 
-
+_.identity = function(value) {
+    return value;
+}
 
 /** _.indexOf
 * Arguments:
@@ -38,7 +40,14 @@ var _ = {};
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
-
+_.indexOf = function(arr, value){
+    for (var i = 0; i < arr.length ; i++){
+        if (arr[i] === value){
+            return i;
+        }
+    }
+    return -1;
+}
 
 /** _.contains
 * Arguments:
@@ -54,7 +63,14 @@ var _ = {};
 *   _.contains([1,"two", 3.14], "two") -> true
 */
 
-
+_.contains = function(arr, value){
+    for (var i = 0 ; i < arr.length ; i++){
+        if (arr[i] === value){
+            return true;
+        }
+    }
+    return false;
+}
 
 /** _.each
 * Arguments:
@@ -69,7 +85,11 @@ var _ = {};
 *      -> should log "a" "b" "c" to the console
 */
 
-
+_.each = function(collec, funct){
+    for (var i = 0; i < collec.length; i++){
+        funct(collec[i], i, collec);
+    }
+}
 
 /** _.filter
 * Arguments:
@@ -87,7 +107,16 @@ var _ = {};
 *   use _.each in your implementation
 */
 
-
+_.filter = function(arr, funct){
+    var newArr = [];
+    for (var i = 0 ; i < arr.length; i++){
+        var temp = funct (arr[i], i, arr);
+        if (temp === true){
+            newArr.push(arr[i]);
+        }
+    }
+    return newArr;
+}
 
 /** _.reject
 * Arguments:
@@ -102,7 +131,16 @@ var _ = {};
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
-
+_.reject = function(arr, funct){
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++){
+        var temp = funct(arr[i], i, arr);
+        if (temp === false){
+            newArr.push(arr[i]);
+        }
+    }
+    return newArr;
+}
 
 /** _.map
 * Arguments:
@@ -118,7 +156,14 @@ var _ = {};
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
-
+_.map = function(collec, funct){
+    var newArr = [];
+    for (var i = 0; i < collec.length; i++){
+        var temp = funct(collec[i], i, collec);
+        newArr.push(temp);
+    }
+    return newArr;
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
