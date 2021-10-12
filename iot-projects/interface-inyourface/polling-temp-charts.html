@@ -81,19 +81,57 @@
 
         // TODO 1: Initialize high and low records
 
+        var regHighest = -500;
+        var regLowest = 500;
+        var wsHighest = -500;
+        var wsLowest = 500;
+
+        $('#reg-chart-container').append($("<p>").attr("id", "reg-highest").text("Highest recorded value is " + regHighest));
+        $('#reg-chart-container').append($("<p>").attr("id", "reg-lowest").text("Lowest recorded value is " + regLowest));
+        $('#ws-chart-container').append($("<p>").attr("id", "ws-highest").text("WebSocket's highest recorded value is " + wsHighest));
+        $('#ws-chart-container').append($("<p>").attr("id", "ws-lowest").text("WebSocket's lowest recorded value is " + wsLowest));
+
         // TODO 2: Update high and low records
         function updateRegRecords(value){
             // Update the regular polling records
+            if (value > regHighest && value < regLowest){
+                regHighest = value;
+                regLowest = value;
+                $("#reg-highest").text("Highest recorded value is " + regHighest);
+                $("#reg-lowest").text("Highest recorded value is " + regLowest); 
+            } else if (value > regHighest){
+                regHighest = value;
+                $("#reg-highest").text("Highest recorded value is " + regHighest);
+            } else if (value < regLowest){
+                regLowest = value;
+                $("#reg-lowest").text("Highest recorded value is " + regLowest);
+            }
         }
 
         function updateWSRecords(value){
             // Update the WebSocket polling records
+            if (value > wsHighest && value < wsLowest){
+                wsHighest = value;
+                wsLowest = value;
+                $("#ws-highest").text("Highest recorded value is " + wsHighest);
+                $("#ws-lowest").text("Highest recorded value is " + wsLowest);
+            } else if (value > wsHighest){
+                wsHighest = value;
+                $("#ws-highest").text("Highest recorded value is " + wsHighest);
+            } else if (value < wsLowest){
+                wsLowest = value;
+                $("#ws-lowest").text("Highest recorded value is " + wsLowest);
+            }
         }
 
         // TODO 3: Regular Polling
 
         function doPoll() {
-
+            $.getJSON("https://309b-2600-1700-a40-7370-00-26.ngrok.io/pi/sensors/dht/temperature", function (result) {
+                addDataPoint(result, regData, regChart);
+                updateRegRecords(result.value);
+                setTimeout(doPoll, 10000);
+            });
         }
 
         doPoll();
@@ -101,12 +139,18 @@
         // TODO 4: WebSocket Polling
         // Create a new WebSocket connection here
 
+        var socket = new WebSocket('ws://309b-2600-1700-a40-7370-00-26.ngrok.io/pi/sensors/dht/temperature');
+
         socket.onmessage = function (event) {
             // Fill in the body of the onmessage function
+            var result = JSON.parse(event.data);
+            addDataPoint(result, wsData, wsChart);
+            updateWSRecords(result.value);
         };
 
         socket.onerror = function (error) {
             // Fill in the body of the onerror function
+            console.log("error");
         };
 
 
