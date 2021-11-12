@@ -17,6 +17,6 @@ process.on('SIGINT', function () {
   led1.unexport();
   led2.writeSync(0);
   led2.unexport();
-  console.log('Bye, bye!');
+  console.log(' Bye, bye!');
   process.exit();
 });
