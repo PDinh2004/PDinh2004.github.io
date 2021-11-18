@@ -23,9 +23,8 @@ module.exports = function() {
                                 {'<>': 'b', 'html': 'Value: '},
                                 {'<>': 'p', 'html': '${value}'}
                             ]}
-                            
-                            res.send(json2html.transform(req.result, transform));
                         ]};
+                        res.send(json2html.transform(req.result, transform));
 		}
 	};
 };
