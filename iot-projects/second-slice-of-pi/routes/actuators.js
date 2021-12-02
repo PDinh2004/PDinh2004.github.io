@@ -3,19 +3,23 @@ const express = require('express'),
 	resources = require('./../resources/model');
 
 router.route('/').get(function (req, res, next) {
-	res.send(resources.pi.actuators);
+	req.result = resources.pi.actuators;
+	next();
 });
 
 router.route('/leds').get(function (req, res, next) {
-	res.send(resources.pi.actuators.leds);
+	req.result = resources.pi.actuators.leds;
+	next();
 });
 
 router.route('/leds/1').get(function (req, res, next) {
-	res.send(resources.pi.actuators.leds[1]);
+	req.result = resources.pi.actuators.leds[1];
+	next();
 });
 
 router.route('/leds/2').get(function (req, res, next) {
-	res.send(resources.pi.actuators.leds[2]);
+	req.result = resources.pi.actuators.leds[2];
+	next();
 });
 
 module.exports = router;
