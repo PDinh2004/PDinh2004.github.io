@@ -31,7 +31,7 @@ function populateLinks(resource){
         for (var key in resource){
                 var value = resource[key];
                 if (typeof value === "object"){
-                        var subResource = resource;
+                        var subResource = value;
                         if (subResource.link){
                                 linkObject[subResource.name] = subResource.link;
                         }
