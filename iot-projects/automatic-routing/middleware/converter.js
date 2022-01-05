@@ -19,14 +19,23 @@ module.exports = function() {
                                         {'<>': 'p', 'html': '${value}'}
                                     ]}
                                 ]};
-                                res.send(json2html.transform(req.result, transform));
+                                console.log("sending html");
+                                let response = json2html.transform(req.result, transform);
+                                let links = generateLinks(req.links);
+
+                                res.send(response + links);
 		        } else {
-		                res.send(req.result); 
+		                res.send(req.result);
 		        }
 	        } else {
 	                next();
 	        }
-		
-		
+	     function generateLinks(linkList){
+                        var html = "<h4>Links</h4>";
+                        for (var link in linkList){
+                                html = html + "<a href="+linkList[link]+">"+link+"</a><br>";
+                        }
+                        return html;
+             };
 	};
 };

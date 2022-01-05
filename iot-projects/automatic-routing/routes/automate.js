@@ -10,10 +10,10 @@ function createRouter(root){
 function generateRoute(router, resource){
         if (resource.link){
                 router.route(resource.link).get(function (req, res, next){
-                        var links = {};
+                        var links = populateLinks(resource);
                         res.links(links);
                         req.links = links;
-                        req.result = links;
+                        req.result = resource;
                         next();
                 });
                 
@@ -23,8 +23,22 @@ function generateRoute(router, resource){
                                 generateRoute(router, value);
                         }
                 }
-        }
-       
+        }     
 };
+
+function populateLinks(resource){
+        var linkObject = {};
+        for (var key in resource){
+                var value = resource[key];
+                if (typeof value === "object"){
+                        var subResource = resource;
+                        if (subResource.link){
+                                linkObject[subResource.name] = subResource.link;
+                        }
+                }
+        }
+        
+        return linkObject;
+}
 
 module.exports = createRouter;
